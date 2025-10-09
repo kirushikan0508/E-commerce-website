@@ -18,15 +18,8 @@ connectDB();
 app.use("/api/food", foodRouter)
 app.use("/images", express.static('uploads'))
 
-app.get("/test", (req, res) => {
-  res.send("Server is working!");
-});
 
 
-
-app.get("/",(req,res)=>{
-    res.send("API Working")
-})
 
 app.listen(port,()=>{
     console.log(`server started on http://localhost:${port}`)

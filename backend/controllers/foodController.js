@@ -43,7 +43,7 @@ const removeFood = async (req,res) => {
         //deletr in the file
         fs.unlink(`uploads/${food.image}`, ()=>{})
 
-        //delete in the database ,ongodb
+        //delete in the database ,mongodb
         await foodModel.findByIdAndDelete(req.body.id);
         res.json({success:true,message:"food removed"})
     } catch(error) {
