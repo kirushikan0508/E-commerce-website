@@ -4,8 +4,8 @@ import { assets } from '../../assets/assets';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const Add = () => {
-  const url = "http://localhost:4000"; // Backend URL
+const Add = ({url}) => {
+  
 
   const [image, setImage] = useState(null);
   const [data, setData] = useState({
@@ -39,7 +39,7 @@ const Add = () => {
       });
 
       if (response.data.success) {
-        alert("Product added successfully!");
+        // alert("Product added successfully!");
 
         // Reset form
         setData({
