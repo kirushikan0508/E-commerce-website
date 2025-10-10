@@ -1,5 +1,6 @@
+import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { food_list } from "../assets/assets";
+
 export const StoreContext = createContext(null)
 
 const StoreContextProvider = (props) =>{
@@ -7,6 +8,8 @@ const StoreContextProvider = (props) =>{
     const [cartItems, setCartItems] =useState({});
     const url = "http://localhost:4000";
     const [token,setToken] = useState("");
+    const [food_list, setFoodList] = useState([]);
+
     
 
     const addToCart = (itemId)=>{
@@ -38,12 +41,23 @@ const StoreContextProvider = (props) =>{
         return totalAmount;
     }
 
+
+    //fetch the food list data from the database
+    const fetchFoodList = async () => {
+        const response = await axios.get(url+"/api/food/list");
+        setFoodList(response.data.data)
+    }
+
     //help to when refresh the webpage it help to stay login 
     useEffect(()=>{
-        if (localStorage.getItem("token")){
+        async function loadData() {
+            await fetchFoodList();
+            if (localStorage.getItem("token")){
             setToken(localStorage.getItem("token"));
+            }
         }
-    })
+        loadData();
+    },[])
 
 
     const contextValue ={

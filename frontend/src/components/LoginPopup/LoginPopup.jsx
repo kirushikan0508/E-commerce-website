@@ -3,7 +3,7 @@ import './LoginPopup.css'
 import { assets } from '../../assets/assets'
 import { useEffect } from 'react'
 import { useContext } from 'react'
-import { StoreContext } from '../../context/StroreContext'
+import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios'
 
 
